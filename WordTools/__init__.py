@@ -75,22 +75,4 @@ class word(object):
         return count
 
     def replace(self, text, modified):
-        if len(text) == 1:
-            new = ''
-            for char in self.word:
-                new += modified if char == text else char
-            self.word = new
-            return
-
-        toModify = self.__getIndexes__(text, 2)
-        if not toModify:
-            return
-
-        new = self.word[:toModify[0][0]]
-        for n in range(len(toModify)):
-            new += modified
-            if n < len(toModify) - 2:
-                new += self.word[toModify[n][1]:toModify[n+1][0]]
-            else:
-                new += self.word[toModify[n][1]:]
-        self.word = new
+        self.word = str.replace(self.word, text, modified)
